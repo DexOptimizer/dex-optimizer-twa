@@ -2,6 +2,8 @@ import React from 'react';
 import './App.css'
 import Header from './components/header/Header'
 import DropDown from './components/UI/DropDown/DropDown';
+import Input from './components/UI/Input/Input';
+import Graph from './components/UI/Graph/Graph';
 
 const App = () => {
   return (
@@ -26,15 +28,38 @@ const App = () => {
       style={{
         width: '100%',
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         margin: '20px 0 0 0'
         }}>
-        <div className='left'></div>
+        <div className='left' style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between'
+        }}>
+          <Input/>
+          <p
+          style={{
+          backgroundColor: '#eee',
+          padding: '10px 25px',
+          }}>To
+          </p>
+        </div>
         <div className='right'>
         <DropDown/>
         <DropDown/>
         </div>
       </div>
+      <div
+      style={{
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: '50px'
+      }}>
+      <Graph/>
+      </div>
+      
     </>
   );
 };

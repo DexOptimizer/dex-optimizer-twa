@@ -3,6 +3,7 @@ import cl from './DropDown.module.scss'
 
 const DropDown = () => {
 const [visible, setVisible] = useState(false)
+const [active, setActive] = useState('asdfasfsdf')
 const rootClass = [cl.dropDown]
 
 if(visible) {
