@@ -1,0 +1,39 @@
+.dropDown {
+    display: flex;
+    flex-direction: column;
+    max-width: 150px;
+    &.active {
+        .btn {
+            border-radius: 5px 5px 0 0;
+        }
+        .dropDown_menu {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    .btn {
+        padding: 12px 20px;
+        border: 1px solid black;
+        border-radius: 5px;
+        transition: .3s;
+    }
+    .dropDown_menu { 
+        border: 1px solid black;
+        border-radius: 0 0 5px 5px;
+        display: inline-block;
+        padding: 10px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(15px);
+        transition: .3s;
+        .dropDown_item {
+            text-align: center;
+            padding: 8px 0;
+            cursor: pointer;
+            &:hover {
+                background-color: #eee;
+            }
+        }
+    }
+}
