@@ -1,7 +1,6 @@
 import {ICurrency} from "../../models/ICurrency";
 import {createSlice} from "@reduxjs/toolkit";
 
-
 interface CurrencyState {
   users: ICurrency[],
   isLoading: boolean,

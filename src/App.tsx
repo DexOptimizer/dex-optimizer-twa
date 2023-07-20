@@ -4,7 +4,7 @@ import Header from './components/header/Header'
 import DropDown from './components/UI/DropDown/DropDown';
 import Input from './components/UI/Input/Input';
 import Graph from './components/UI/Graph/Graph';
-
+import { TonConnectButton } from '@tonconnect/ui-react';
 const App = () => {
   return (
     <>
@@ -59,7 +59,14 @@ const App = () => {
       }}>
       <Graph/>
       </div>
-      
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: '50px'
+      }}>
+      <TonConnectButton/>
+      </div>
     </>
   );
 };
