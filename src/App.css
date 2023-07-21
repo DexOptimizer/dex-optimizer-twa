@@ -10,10 +10,6 @@
 	box-sizing: border-box;
 }
 
-body {
-    
-}
-
 a, a:link, a:visited  {
     text-decoration: none;
 }
@@ -87,4 +83,22 @@ label {
 
 legend {
 	display: block;
+}
+
+
+
+
+.button {
+    width: 175px;
+    height: 55px;
+    border-radius: 5px;
+    background-color: #b8d0ec;
+    padding: 8px 0;
+    transition: .3s;
+    &:hover{
+        background-color: #9cc0ea;
+    }
+    &:active{
+        background-color: #79abe4;
+    }
 }
