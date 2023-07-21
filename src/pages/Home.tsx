@@ -4,9 +4,17 @@ import DropDown from '../components/UI/DropDown/DropDown';
 import Graph from '../components/UI/Graph/Graph';
 
 import { TonConnectButton } from '@tonconnect/ui-react';
+import {NavLink} from "react-router-dom";
+import {RoutesName} from "../routes/constants";
+import {useTonConnect} from "../hooks/useTonConnect";
 
 
 const Home = () => {
+
+  const {network ,connected} = useTonConnect()
+
+  console.log(network, connected)
+
   return (
     <>
       <Header/>
@@ -67,18 +75,11 @@ const Home = () => {
         justifyContent: 'center',
         marginTop: '50px'
       }}>
-      <TonConnectButton/>
+        {!connected ?
+          <TonConnectButton/>
+          : <NavLink to={RoutesName.OPTIMIZE}>Optimize it for me</NavLink>
+        }
       </div>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: '50px',
-        marginBottom: '50px'
-      }}>
-        <button className="button"><a href='/optimize'>Optimize it for me!</a></button>
-      </div>
-
     </>
   );
 };

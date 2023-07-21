@@ -1,4 +1,4 @@
 export enum RoutesName {
   HOME = '/',
-  OPTIMIZE = 'optimize'
+  OPTIMIZE = '/optimize'
 }
