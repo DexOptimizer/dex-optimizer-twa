@@ -4,8 +4,14 @@ import Header from './components/header/Header'
 import DropDown from './components/UI/DropDown/DropDown';
 import Input from './components/UI/Input/Input';
 import Graph from './components/UI/Graph/Graph';
-import { TonConnectButton } from '@tonconnect/ui-react';
+import {TonConnectButton} from '@tonconnect/ui-react';
+import {useTonConnect} from "./hooks/useTonConnect";
 const App = () => {
+
+  const {network, connected} = useTonConnect()
+
+  console.log(network, connected)
+
   return (
     <>
       <Header></Header>
@@ -66,9 +72,8 @@ const App = () => {
         justifyContent: 'center',
         marginTop: '50px'
       }}>
-      <TonConnectButton/>
+          <TonConnectButton className={'tonConnectButton'} />
       </div>
-
     </>
   );
 };
