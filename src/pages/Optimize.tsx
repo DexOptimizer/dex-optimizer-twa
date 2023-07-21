@@ -1,5 +1,5 @@
-import DropDown from "../UI/DropDown/DropDown"
-import Input from "../UI/Input/Input"
+import DropDown from "../components/UI/DropDown/DropDown"
+import Input from "../components/UI/Input/Input"
 
 const Optimize = () => {
     return(
@@ -13,9 +13,8 @@ const Optimize = () => {
                 <Input/>
                 <DropDown/>
                 <span id="service_fee">1</span>
-                <img></img>
             </div>
         </>
     )
 }
-export { Optimize }
+export default Optimize
