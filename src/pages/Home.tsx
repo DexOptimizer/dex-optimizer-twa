@@ -1,7 +1,7 @@
-import Header from '../header/Header';
-import Input from '../UI/Input/Input';
-import DropDown from '../UI/DropDown/DropDown';
-import Graph from '../UI/Graph/Graph';
+import Header from '../components/header/Header';
+import Input from '../components/UI/Input/Input';
+import DropDown from '../components/UI/DropDown/DropDown';
+import Graph from '../components/UI/Graph/Graph';
 
 import { TonConnectButton } from '@tonconnect/ui-react';
 
