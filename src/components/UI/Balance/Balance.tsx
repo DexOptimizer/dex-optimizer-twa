@@ -1,12 +1,12 @@
 import './Balance.scss';
-import ton from '../../../images/toncoin.png';
+import { toncoin } from '../../../images/index';
 
 
 const Balance = () => {
     return (
         <div className="balance">
             <span id="service_fee">1</span>
-            <img src={ton} style={{width: '3rem'}} />
+            <img src={toncoin} style={{width: '3rem'}} alt=''/>
         </div>
     )
 }

@@ -1,9 +1,6 @@
 import'./Home.scss'
-
-import Input from '../../components/UI/Input/Input';
-import DropDown from '../../components/UI/DropDown/DropDown';
-import Graph from '../../components/UI/Graph/Graph';
-import logo from '../../images/logo.svg'
+import { Graph, Input, DropDown} from '../../components/UI/index';
+import { logo } from '../../images/index'
 
 import { TonConnectButton } from '@tonconnect/ui-react';
 import {useTonConnect} from "../../hooks/useTonConnect";
@@ -13,14 +10,12 @@ import {RoutesName} from "../../routes/constants";
 
 const Home = () => {
 
-  const {network ,connected} = useTonConnect()
-
-  console.log(network, connected)
+  const {connected} = useTonConnect()
 
   return (
     <>
       <div className='header'>
-        <img className='logo' src={logo} style={{width: '5rem'}}/>
+        <img className='logo' src={logo} style={{width: '5rem'}} alt=''/>
         <p className='text'>I am going to<br></br>exchange</p>
       </div>
       <div className='exchange'>

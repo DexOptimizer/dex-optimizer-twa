@@ -1,19 +1,12 @@
 import './Optimize.scss'
-
-import DropDown from "../../components/UI/DropDown/DropDown"
-import Input from "../../components/UI/Input/Input"
-import Balance from '../../components/UI/Balance/Balance'
-
-import ton from '../../images/toncoin.png'
-import Button from "../../components/UI/Button/Button";
+import { toncoin } from '../../images/index'
+import { Button, Balance, Input, DropDown } from "../../components/UI/index";
 import {useNavigate} from "react-router-dom";
-import {RoutesName} from "../../routes/constants";
+import { RoutesName } from "../../routes/constants";
 
 const Optimize = () => {
 
   const navigate = useNavigate()
-
-  console.log(navigate)
 
   return (
     <>
@@ -35,7 +28,7 @@ const Optimize = () => {
           <button className='routes-button'>View routes</button>
           <p>for</p>
           <span>2.1</span>
-          <img src={ton} style={{width: '3rem'}} alt=''/>
+          <img src={toncoin} style={{width: '3rem'}} alt=''/>
         </div>
 
         <div className='wrapper'>

@@ -1,8 +1,7 @@
 import './Payment.scss'
-import qr from '../../images/qr.jpg'
-import Balance from '../../components/UI/Balance/Balance'
-import Button from '../../components/UI/Button/Button'
-import {useNavigate} from "react-router-dom";
+import { qr } from '../../images/index'
+import { Balance, Button } from '../../components/UI/index'
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
 
