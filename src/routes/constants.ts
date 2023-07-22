@@ -1,4 +1,6 @@
 export enum RoutesName {
   HOME = '/',
-  OPTIMIZE = '/optimize'
+  OPTIMIZE = '/optimize',
+  PAYFORTOKENS = '/payfortokens',
+  PAYMENT = '/payment',
 }

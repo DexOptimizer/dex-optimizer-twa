@@ -3,6 +3,8 @@ import Optimize from "../pages/Optimize/Optimize";
 import {RoutesName} from "./constants";
 import Layout from "../components/Layout";
 import Home from "../pages/Home/Home";
+import PayForTokens from "../pages/PayForTokens/PayForTokens";
+import Payment from "../pages/Payment/Payment";
 
 
 const Routes = () => {
@@ -18,6 +20,14 @@ const Routes = () => {
         {
           path: RoutesName.OPTIMIZE,
           element: <Optimize />,
+        },
+        {
+          path: RoutesName.PAYFORTOKENS,
+          element: <PayForTokens/>,
+        },
+        {
+          path: RoutesName.PAYMENT,
+          element: <Payment/>
         }
       ]
     }

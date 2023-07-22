@@ -1,9 +1,18 @@
 import './Button.scss'
+import React from "react";
 
-const Button = () => {
+interface IButtonProps {
+  onClick?: () => void,
+  children: React.ReactNode | string,
+  className?: string
+}
+
+const Button: React.FC<IButtonProps> = ({onClick, children, className}) => {
     return (
         <>
-            <button className='button_back'>Back</button>
+            <button className={className} onClick={onClick}>
+              {children}
+            </button>
         </>
     )
 }
