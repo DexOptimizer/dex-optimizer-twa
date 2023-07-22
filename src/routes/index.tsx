@@ -1,8 +1,8 @@
 import {useRoutes} from "react-router-dom";
-import Optimize from "../pages/Optimize";
+import Optimize from "../pages/Optimize/Optimize";
 import {RoutesName} from "./constants";
 import Layout from "../components/Layout";
-import Home from "../pages/Home";
+import Home from "../pages/Home/Home";
 
 
 const Routes = () => {

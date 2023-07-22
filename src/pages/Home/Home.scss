@@ -1,0 +1,45 @@
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    .logo {
+        margin-bottom: 15px;
+    }
+    .text {
+        display: inline-block;
+        background-color: #eee;
+        padding: 10px 35px;
+    }
+}
+.exchange {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 15px 0 15px 0;
+    .left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-right: 30px;
+        p {
+            background-color: #eee;
+            padding: 10px 25px;
+        }
+    }
+}
+.graph_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.button_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 50px;
+}
