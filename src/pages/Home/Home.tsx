@@ -37,7 +37,7 @@ const Home = () => {
           <TonConnectButton/>
           : <NavLink to={RoutesName.OPTIMIZE}>Optimize it for me</NavLink>
         } */}
-        <Button className={'button'} onClick={() => navigate(RoutesName.OPTIMIZE)}><span className='button_text'>Optimize it for me</span></Button>
+        <Button className={'button'} onClick={() => navigate(RoutesName.OPTIMIZE)}>Optimize it for me</Button>
       </div>
     </>
   );
