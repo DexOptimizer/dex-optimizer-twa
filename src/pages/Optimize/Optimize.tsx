@@ -18,21 +18,21 @@ const Optimize = () => {
         <Balance/>
       </div>
       <div className='main'>
-        <p>Best output:</p>
+        <span style={{fontSize: '20px'}}>Best output:</span>
         <div className='main_output'>
           <span>1023</span>
           <DropDown/>
         </div>
 
         <div className='main_routes'>
-          <button className='routes-button'>View routes</button>
-          <p>for</p>
+          <Button className={'button'} onClick={() => navigate(RoutesName.DEXSWAP)} ><p style={{color:'#fff'}}>View routes</p></Button>
+          <span>for</span>
           <span>2.1</span>
           <img src={toncoin} style={{width: '3rem'}} alt=''/>
         </div>
 
         <div className='wrapper'>
-          <Button className={'wrapper_button'} onClick={() => navigate(RoutesName.PAYFORTOKENS)}>Buy more ST</Button>
+          <Button className={'button'} onClick={() => navigate(RoutesName.PAYFORTOKENS)}><span style={{color:'#fff'}}>Buy more ST</span></Button>
         </div>
 
         <div className='swaps'>

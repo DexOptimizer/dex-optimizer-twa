@@ -3,30 +3,39 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 20px;
+    width: 100%;
     .logo {
         margin-bottom: 15px;
     }
     .text {
         display: inline-block;
-        background-color: #eee;
+        background-color: #0099d7;
+        color: #fff;
         padding: 10px 35px;
     }
 }
 .exchange {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin: 15px 0 15px 0;
-    .left {
+    .up {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: space-between;
-        margin-right: 30px;
+        align-items: center;
+        width: 60%;
         p {
             background-color: #eee;
             padding: 10px 25px;
         }
+    }
+    .down {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 }
 .graph_wrapper {
@@ -42,4 +51,11 @@
     flex-direction: row;
     justify-content: center;
     margin-top: 50px;
+    .button {
+        width: 200px;
+        margin-bottom: 15px;
+        .button_text {
+            color: #fff;
+        }
+    }
 }

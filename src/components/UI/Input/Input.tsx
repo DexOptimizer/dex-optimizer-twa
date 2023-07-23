@@ -3,7 +3,7 @@ import './Input.scss'
 const Input = () => {
   return (
     <>
-      <input type='number' placeholder='0'/>
+      <input type='number' placeholder='Quantity'/>
     </>
   )
 }

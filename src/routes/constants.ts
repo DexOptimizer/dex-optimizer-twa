@@ -3,4 +3,5 @@ export enum RoutesName {
   OPTIMIZE = '/optimize',
   PAYFORTOKENS = '/payfortokens',
   PAYMENT = '/payment',
+  DEXSWAP = '/dexswap'
 }

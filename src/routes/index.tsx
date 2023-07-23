@@ -1,7 +1,7 @@
 import {useRoutes} from "react-router-dom";
 import {RoutesName} from "./constants";
 import Layout from "../components/Layout";
-import { Payment, Home, Optimize, PayForTokens } from "../pages/index"
+import { Payment, Home, Optimize, PayForTokens, DexSwap } from "../pages/index"
 
 const Routes = () => {
   return useRoutes([
@@ -24,6 +24,10 @@ const Routes = () => {
         {
           path: RoutesName.PAYMENT,
           element: <Payment/>
+        },
+        {
+          path: RoutesName.DEXSWAP,
+          element: <DexSwap/>
         }
       ]
     }

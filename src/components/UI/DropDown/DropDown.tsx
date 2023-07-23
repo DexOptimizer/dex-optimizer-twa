@@ -1,5 +1,6 @@
 import {useState} from "react";
 import cl from './DropDown.module.scss'
+import arrow from '../../../images/arrow-down.png'
 
 const DropDown = () => {
   const [visible, setVisible] = useState(false)
@@ -20,7 +21,7 @@ const DropDown = () => {
   return (
     <>
       <div className={rootClass.join(' ')}>
-        <button className={cl.btn} onClick={DropDownHandler}>TON</button>
+        <button className={cl.btn} onClick={DropDownHandler}>TON<img className={cl.arrowDown} src={arrow}/></button>
         <ul className={cl.dropDown_menu}>
           <li className={cl.dropDown_item} onClick={() => setVisible(false)}>TON</li>
           <li className={cl.dropDown_item} onClick={() => setVisible(false)}>Jetton</li>

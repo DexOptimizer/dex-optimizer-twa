@@ -1,8 +1,8 @@
 import './PayForTokens.scss'
 import { toncoin } from '../../images/index';
 import { Button, Balance, Input, DropDown } from '../../components/UI/index';
-import {useNavigate} from "react-router-dom";
-import {RoutesName} from "../../routes/constants";
+import { useNavigate } from "react-router-dom";
+import { RoutesName } from "../../routes/constants";
 
 
 const PayForTokens = () => {
@@ -11,22 +11,24 @@ const PayForTokens = () => {
 
   return (
     <>
-      <div className='header_right'>
+      <div className='header_PayForTokens'>
         <Balance/>
       </div>
       <div className='main'>
-        <p>Amount of tokens you want to buy:</p>
+        <span>Amount of tokens you want to buy:</span>
         <div className='Wrapper_position'>
           <Input/>
           <img src={toncoin} style={{width: '3rem', marginLeft: '10px'}} alt=''/>
         </div>
-        <p>=</p>
+        <span>=</span>
         <div className='Wrapper_position'>
           <Input/>
           <DropDown/>
         </div>
-        <Button className={'button_buy'} onClick={() => navigate(RoutesName.PAYMENT)}>Buy</Button>
-        <Button className={'button_buy'} onClick={() => navigate(-1)}>Back</Button>
+        <div className='wrapper_buttons'>
+          <Button className={'button'} onClick={() => navigate(RoutesName.PAYMENT)}>Buy</Button>
+          <Button className={'button'} onClick={() => navigate(-1)}>Back</Button>
+        </div>
       </div>
     </>
   )

@@ -1,8 +1,9 @@
 .header_optimize { 
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    margin-top: 30px;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 30px 0 30px;
     .right {
         display: flex;
         align-content: center;
@@ -14,7 +15,6 @@
         align-content: center;
         justify-content: space-between;
         align-items: center;
-        margin-right: 30px;
         width: 160px;
     }
 }
@@ -23,7 +23,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     margin-top: 30px;
     .main_output {
         display: flex;
@@ -31,6 +31,7 @@
         align-items: center;
         justify-content: center;
         margin-top: 30px;
+        margin-left: 25px;
         span {
             margin-right: 10px;
         }
@@ -42,6 +43,7 @@
         justify-content: space-evenly;
         width: 250px;
         margin-top: 25px;
+        
         .routes-button {
             padding: 5px;
             border-radius: 5px;
@@ -55,11 +57,6 @@
         justify-content: center;
         width: 250px;
         margin-top: 25px;
-        .wrapper_button {
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid black;
-        }
     }
     .swaps {
         display: flex;
