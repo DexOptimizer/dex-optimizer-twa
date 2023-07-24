@@ -24,8 +24,7 @@ The route optimization algorithm considers various factors, including liquidity,
 
 ## ChartingView Integration
 
-ChartinView allows you to search for a specific ticker (symbol) in the TON DeFi ecosystem, retrieves incl. OHLCV chart data and
-subscribe to updates.
+[ChartingView](https://chartingview.co/) allows you to search for a specific ticker (symbol) in the TON DeFi ecosystem, retrieves incl. OHLCV chart data and subscribe to updates.
 
 ![image](./docs/chartingview.jpeg)
 
