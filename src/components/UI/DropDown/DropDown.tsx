@@ -16,9 +16,9 @@ const DropDown = () => {
     rootClass.push(cl.active);
   }
 
-  const onClickHandler = (event: React.MouseEvent) => {
+  const onClickHandler = (event: React.MouseEvent<HTMLElement>) => {
     setVisible(false);
-    setDropDownTitle(event.target.childNodes[0].data)
+    setDropDownTitle(event.currentTarget.textContent || '')
   }
   const DropDownHandler = () => {
     if (visible) {
@@ -34,7 +34,7 @@ const DropDown = () => {
         <button className={cl.btn} onClick={DropDownHandler}>{dropDownTitle}<img className={cl.arrowDown} src={arrow} alt=''/></button>
         <ul className={cl.dropDown_menu}>
           {currency.map(item =>
-            <li value={item.value} key={item.id} className={cl.dropDown_item} onClick={onClickHandler}>{item.name}</li>
+            <li id={item.value} key={item.id} className={cl.dropDown_item} onClick={onClickHandler}>{item.name}</li>
           )}
           {/*<li className={cl.dropDown_item} onClick={() => setVisible(false)}>TON</li>*/}
           {/*<li className={cl.dropDown_item} onClick={() => setVisible(false)}>Jetton</li>*/}
