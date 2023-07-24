@@ -1,31 +1,44 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import cl from './DropDown.module.scss'
 import arrow from '../../../images/arrow-down.png'
 
 const DropDown = () => {
-  const [visible, setVisible] = useState(false)
-  const rootClass = [cl.dropDown]
+  const [dropDownTitle, setDropDownTitle] = useState('TON');
+  const [currency, setCurrency] = useState([
+    {id: 1, name: 'TON', value: 'ton'},
+    {id: 2, name: 'Jetton', value: 'jetton'},
+    {id: 3, name: 'USDT', value: 'usdt'},
+  ]);
+  const [visible, setVisible] = useState(false);
+  const rootClass = [cl.dropDown];
 
   if (visible) {
-    rootClass.push(cl.active)
+    rootClass.push(cl.active);
   }
 
+  const onClickHandler = (event: React.MouseEvent) => {
+    setVisible(false);
+    setDropDownTitle(event.target.childNodes[0].data)
+  }
   const DropDownHandler = () => {
     if (visible) {
-      setVisible(false)
+      setVisible(false);
     } else {
-      setVisible(true)
+      setVisible(true);
     }
   }
 
   return (
     <>
       <div className={rootClass.join(' ')}>
-        <button className={cl.btn} onClick={DropDownHandler}>TON<img className={cl.arrowDown} src={arrow}/></button>
+        <button className={cl.btn} onClick={DropDownHandler}>{dropDownTitle}<img className={cl.arrowDown} src={arrow} alt=''/></button>
         <ul className={cl.dropDown_menu}>
-          <li className={cl.dropDown_item} onClick={() => setVisible(false)}>TON</li>
-          <li className={cl.dropDown_item} onClick={() => setVisible(false)}>Jetton</li>
-          <li className={cl.dropDown_item} onClick={() => setVisible(false)}>USDT</li>
+          {currency.map(item =>
+            <li value={item.value} key={item.id} className={cl.dropDown_item} onClick={onClickHandler}>{item.name}</li>
+          )}
+          {/*<li className={cl.dropDown_item} onClick={() => setVisible(false)}>TON</li>*/}
+          {/*<li className={cl.dropDown_item} onClick={() => setVisible(false)}>Jetton</li>*/}
+          {/*<li className={cl.dropDown_item} onClick={() => setVisible(false)}>USDT</li>*/}
         </ul>
       </div>
     </>

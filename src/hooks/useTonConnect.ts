@@ -12,7 +12,7 @@ export function useTonConnect(): {
   const wallet = useTonWallet();
 
   return {
-    sender: {G
+    sender: {
       send: async (args: SenderArguments) => {
         tonConnectUI.sendTransaction({
           messages: [
