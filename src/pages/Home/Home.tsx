@@ -17,7 +17,7 @@ const Home = () => {
     <>
       <div className='header'>
         <img className='logo' src={logo} style={{width: '5rem'}} alt=''/>
-        <span className='text'>I am going to<br></br>exchange</span>
+        <Button className={'button'}>I am going to<br></br>exchange</Button>
       </div>
       <div className='exchange'>
         <div className='up'>
@@ -25,7 +25,7 @@ const Home = () => {
           <DropDown/>
         </div>
         <div className='up'>
-          <span style={{background: '#0099d7', color: '#fff', padding: '8px 20px'}}>To</span>
+          <span style={{background: '#0099d7', color: '#fff', padding: '8px 20px', borderRadius: '5px'}}>To</span>
           <DropDown/>
         </div>
       </div>
@@ -33,11 +33,10 @@ const Home = () => {
         <Graph/>
       </div>
       <div className='button_wrapper'>
-        {/* {!connected ?
+        {!connected ?
           <TonConnectButton/>
-          : <NavLink to={RoutesName.OPTIMIZE}>Optimize it for me</NavLink>
-        } */}
-        <Button className={'button'} onClick={() => navigate(RoutesName.OPTIMIZE)}>Optimize it for me</Button>
+          : <Button className={'button'} onClick={() => navigate(RoutesName.OPTIMIZE)}>Optimize it for me</Button>
+        }
       </div>
     </>
   );

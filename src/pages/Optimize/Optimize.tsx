@@ -41,7 +41,8 @@ const Optimize = () => {
           <h1 className='swaps_text'>The worst single swap route:</h1>
           <span className='swaps_num'>-78$</span>
         </div>
-
+        
+        <Button className={'button'} onClick={() => navigate(-1)}>Back</Button>
       </div>
     </>
   )
