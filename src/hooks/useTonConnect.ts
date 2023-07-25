@@ -7,6 +7,7 @@ export function useTonConnect(): {
   connected: boolean;
   wallet: string | null;
   network: CHAIN | null;
+  payload: string;
 } {
   const [tonConnectUI] = useTonConnectUI();
   const wallet = useTonWallet();
