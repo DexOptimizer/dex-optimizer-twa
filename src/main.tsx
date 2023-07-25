@@ -19,7 +19,7 @@ const store = setupStore();
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <TonConnectUIProvider manifestUrl={manifestUrl}>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename="/twa/">
         <Provider store={store}>
           <App />
         </Provider>

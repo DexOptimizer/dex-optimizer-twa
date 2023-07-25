@@ -12,18 +12,18 @@ const PayForTokens = () => {
   return (
     <>
       <div className='header_PayForTokens'>
-        <Balance/>
+        <Balance />
       </div>
       <div className='main'>
         <span>Amount of tokens you want to buy:</span>
         <div className='Wrapper_position'>
-          <Input/>
-          <img src={toncoin} style={{width: '3rem', marginLeft: '10px'}} alt=''/>
+          <Input />
+          <img src={toncoin} style={{ width: '3rem', marginLeft: '10px' }} alt='' />
         </div>
         <span>=</span>
         <div className='Wrapper_position'>
-          <Input/>
-          <DropDown/>
+          <Input />
+          {/* <DropDown/> */}
         </div>
         <div className='wrapper_buttons'>
           <Button className={'button'} onClick={() => navigate(RoutesName.PAYMENT)}>Buy</Button>

@@ -13,45 +13,45 @@ const AnotherSwap = () => {
         <>
             <div className="header_optimize">
                 <div className='left'>
-                <Input/>
-                <DropDown/>
+                    <Input />
+                    {/* <DropDown/> */}
                 </div>
-                <Balance/>
+                <Balance />
             </div>
             <div className='main'>
-                <span style={{fontSize: '20px'}}>Best output:</span>
+                <span style={{ fontSize: '20px' }}>Best output:</span>
                 <div className='main_output'>
-                    <span style={{backgroundColor: '#80ff97', padding: '10px 10px 10px 10px'}}>1023</span>
-                    <DropDown/>
+                    <span style={{ backgroundColor: '#80ff97', padding: '10px 10px 10px 10px' }}>1023</span>
+                    {/* <DropDown/> */}
                 </div>
-                <span style={{marginTop: '20px'}}>Steps 1</span>
+                <span style={{ marginTop: '20px' }}>Steps 1</span>
                 <div className='step'>
                     <div className='main_output'>
                         <span>1400</span>
-                        <DropDown/>
+                        {/* <DropDown/> */}
                     </div>
                     <div className='icons'>
-                        <img style={{width: '65px'}} src={arrowReverse}/>
-                        <img style={{width: '65px'}} src={toncoin}/>
+                        <img style={{ width: '65px' }} src={arrowReverse} />
+                        <img style={{ width: '65px' }} src={toncoin} />
                     </div>
                     <div className='main_output'>
-                        <span style={{backgroundColor: '#80ff97', padding: '10px 10px 10px 10px'}}>2567</span>
-                        <DropDown/>
+                        <span style={{ backgroundColor: '#80ff97', padding: '10px 10px 10px 10px' }}>2567</span>
+                        {/* <DropDown/> */}
                     </div>
                 </div>
-                <span style={{marginTop: '20px'}}>Steps 2</span>
+                <span style={{ marginTop: '20px' }}>Steps 2</span>
                 <div className='step'>
                     <div className='main_output'>
                         <span>2567</span>
-                        <DropDown/>
+                        {/* <DropDown/> */}
                     </div>
                     <div className='icons'>
-                        <img style={{width: '65px'}} src={arrowReverse}/>
-                        <img style={{width: '65px'}} src={toncoin}/>
+                        <img style={{ width: '65px' }} src={arrowReverse} />
+                        <img style={{ width: '65px' }} src={toncoin} />
                     </div>
                     <div className='main_output'>
-                        <span style={{backgroundColor: '#80ff97', padding: '10px 10px 10px 10px'}}>513</span>
-                        <DropDown/>
+                        <span style={{ backgroundColor: '#80ff97', padding: '10px 10px 10px 10px' }}>513</span>
+                        {/* <DropDown/> */}
                     </div>
                 </div>
 
