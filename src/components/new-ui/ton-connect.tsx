@@ -97,8 +97,8 @@ function Dropdown({ address, tonConnectUI, fullWidth }: DropdownProps) {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger ref={triggerRef}>
-        <div className="relative flex items-center justify-between gap-2 button">
-          <div>
+        <div className="relative flex items-center rounded-2xl bg-gray-900 py-2.5 px-3 hover:bg-gray-800 justify-between gap-2">
+          <div className="px-1">
             {address ? (
               slicedAddress
             ) : (
@@ -118,7 +118,7 @@ function Dropdown({ address, tonConnectUI, fullWidth }: DropdownProps) {
         >
           <DropdownMenu.Item>
             <button
-              className="w-full rounded-xl px-5 py-3 button text-left hover:bg-gray-800 focus:outline-none"
+              className="w-full rounded-xl px-5 py-3 button text-left bg-gray-900 hover:bg-gray-800 focus:outline-none"
               onClick={() => navigator.clipboard.writeText(address)}
             >
               Copy address
@@ -126,7 +126,7 @@ function Dropdown({ address, tonConnectUI, fullWidth }: DropdownProps) {
           </DropdownMenu.Item>
           <DropdownMenu.Item>
             <button
-              className="w-full rounded-xl px-5 py-3 button text-left hover:bg-gray-800"
+              className="w-full rounded-xl px-5 py-3 button text-left bg-gray-900 hover:bg-gray-800"
               onClick={disconnect}
             >
               Disconnect

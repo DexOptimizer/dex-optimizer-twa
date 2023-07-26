@@ -8,7 +8,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../routes/constants';
 import { useEffect, useState } from 'react';
 import { API_URL } from '../../api/api';
-import { TonConnectButtonV2 } from '../../hooks/ton-connect';
+import { TonConnectButtonV2 } from '../../components/new-ui/ton-connect';
 import {
   Select,
   SelectContent,
@@ -17,6 +17,7 @@ import {
   SelectValue,
 } from '../../components/new-ui/select';
 import { Input } from '../../components/new-ui/input';
+import { cn } from '../../utils';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -66,23 +67,28 @@ const Home = () => {
 
   function handleOptimize(): void {
     if (!userId) {
-      console.warn("User not authorized yet")
+      console.warn('User not authorized yet');
       return;
     }
     fetch(API_URL + '/dexopt/api/v1/optimize', {
-      method: 'POST', headers: {
-        "Content-Type": "application/json",
-      }, body: JSON.stringify({
-        'value': value,
-        'src': src,
-        'dst': dst,
-        'userId': userId
-      })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        value: value,
+        src: src,
+        dst: dst,
+        userId: userId,
+      }),
     }).then(async (value) => {
       const response = await value.json();
       console.log(response);
-      localStorage.setItem('dex_optimiser_optimization', JSON.stringify(response));
-      navigate(RoutesName.OPTIMIZE)
+      localStorage.setItem(
+        'dex_optimiser_optimization',
+        JSON.stringify(response)
+      );
+      navigate(RoutesName.OPTIMIZE);
     });
   }
 
@@ -118,59 +124,72 @@ const Home = () => {
         />
       </div>
 
-      <h2 className="font-semibold text-2xl">I'm going to exchange</h2>
-
-      <div className="flex items-end gap-2">
-        <div className="basis-2/3 flex flex-col gap-1">
-          <label className="text-sm">Amount</label>
-          <input className="w-full text-lg h-12 font-semibold" type='number' placeholder='Quantity' onChange={(e) => {
-            setValue(parseInt(e.target.value));
-          }} />
+      <div className="flex flex-col gap-4">
+        <h2 className="font-semibold text-2xl">I'm going to exchange</h2>
+        <div className="flex items-end gap-2">
+          <div className="basis-2/3 flex flex-col gap-1">
+            <label className="text-sm">Amount</label>
+            <input
+              className="w-full text-lg h-12 font-semibold"
+              type="number"
+              placeholder="Quantity"
+              onChange={(e) => {
+                setValue(parseInt(e.target.value));
+              }}
+            />
+          </div>
+          <div className="basis-1/3">
+            <Select defaultValue="ton">
+              <SelectTrigger className="h-12">
+                <SelectValue placeholder="TON" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="ton">TON</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
-        <div className="basis-1/3">
-          <Select defaultValue="ton">
-            <SelectTrigger className="h-12">
-              <SelectValue placeholder="TON" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="ton">TON</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
 
-      <div className="flex items-end gap-2">
-        <div className="basis-2/3 flex flex-col gap-1">
-          <label className="text-sm">To</label>
-          <Input className="w-full text-lg h-12 font-semibold" />
+        <div className="flex items-end gap-2">
+          <div className="basis-2/3 flex flex-col gap-1">
+            <label className="text-sm">To</label>
+            <Input
+              disabled
+              className="w-full text-lg h-12 font-semibold disabled:cursor-default disabled:opacity-100"
+            />
+          </div>
+          <div className="basis-1/3">
+            <Select defaultValue="usdc">
+              <SelectTrigger className="h-12">
+                <SelectValue placeholder="USDC" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="usdc">USDC</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
         </div>
-        <div className="basis-1/3">
-          <Select defaultValue="usdc">
-            <SelectTrigger className="h-12">
-              <SelectValue placeholder="USDC" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="usdc">USDC</SelectItem>
-            </SelectContent>
-          </Select>
+
+        <div className="overflow-hidden rounded-xl">
+          {(import.meta.env.VITE_HIDE_GRAPH ?? 'false') === 'true' ? null : (
+            <Graph pool={getPool()} />
+          )}
         </div>
-      </div>
 
-      <div className="overflow-hidden rounded-xl">
-        {(import.meta.env.VITE_HIDE_GRAPH ?? 'false') === 'true' ?
-          null : <Graph pool={getPool()} />
-        }
-      </div>
-
-      <div>
-        {!authFinished ? null : (
-          <button
-            className="rounded-2xl bg-sky-500 py-2.5 px-4 font-medium transition duration-75 hover:bg-sky-400 focus:outline-none text-white"
-            onClick={handleOptimize}
-          >
-            Optimize it for me
-          </button>
-        )}
+        <div>
+          {!connected ? null : (
+            <button
+              className={cn(
+                'rounded-2xl bg-sky-500 py-2.5 w-full font-medium transition duration-75 hover:bg-sky-400 focus:outline-none',
+                !authFinished ? 'cursor-not-allowed opacity-50' : ''
+              )}
+              disabled={!authFinished}
+              onClick={handleOptimize}
+            >
+              Optimize it for me
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
