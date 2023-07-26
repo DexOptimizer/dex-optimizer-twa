@@ -104,7 +104,7 @@ const Home = () => {
         </div>
       </div>
       <div className='graph_wrapper'>
-        {/* <Graph pool={getPool()} /> */}
+        <Graph pool={getPool()} />
       </div>
       <div className='button_wrapper'>
         {!authFinished ?
