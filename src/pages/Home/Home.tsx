@@ -135,7 +135,11 @@ const Home = () => {
               pattern="\d*"
               placeholder="Amount"
               onChange={(e) => {
-                setValue(parseInt(e.target.value));
+                if (e.target.value === '') {
+                  setValue(0);
+                } else {
+                  setValue(parseInt(e.target.value));
+                }
               }}
             />
           </div>
@@ -154,18 +158,18 @@ const Home = () => {
         <div className="flex items-end gap-2">
           <div className="basis-2/3 flex flex-col gap-1">
             <label className="text-sm">To</label>
-            <Input
-              disabled
-              className="w-full text-lg h-12 font-semibold disabled:cursor-default disabled:opacity-100"
-            />
+
           </div>
           <div className="basis-1/3">
-            <Select defaultValue="usdc">
+            <Select value={dst} onValueChange={(value) => { console.log("onValueChange", value); setDst(value); }}>
               <SelectTrigger className="h-12">
                 <SelectValue placeholder="USDC" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="usdc">USDC</SelectItem>
+                {currency
+                  .map((currency, index) => (<SelectItem key={index} value={currency}>{currency}</SelectItem>))
+                }
+
               </SelectContent>
             </Select>
           </div>
@@ -182,9 +186,9 @@ const Home = () => {
             <button
               className={cn(
                 'rounded-2xl bg-sky-500 py-2.5 w-full font-medium transition duration-75 hover:bg-sky-400 focus:outline-none',
-                !authFinished ? 'cursor-not-allowed opacity-50' : ''
+                (!authFinished || value <= 0) ? 'cursor-not-allowed opacity-50' : ''
               )}
-              disabled={!authFinished}
+              disabled={!authFinished || value <= 0}
               onClick={handleOptimize}
             >
               Optimize it for me
