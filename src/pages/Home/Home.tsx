@@ -125,14 +125,15 @@ const Home = () => {
       </div>
 
       <div className="flex flex-col gap-4">
-        <h2 className="font-semibold text-2xl">I'm going to exchange</h2>
+        <h2 className="font-semibold text-2xl">I'm going to exchange...</h2>
         <div className="flex items-end gap-2">
           <div className="basis-2/3 flex flex-col gap-1">
             <label className="text-sm">Amount</label>
-            <input
-              className="w-full text-lg h-12 font-semibold"
+            <Input
+              className="w-full text-lg h-12 font-semibold placeholder:text-gray-500"
               type="number"
-              placeholder="Quantity"
+              pattern="\d*"
+              placeholder="Amount"
               onChange={(e) => {
                 setValue(parseInt(e.target.value));
               }}
