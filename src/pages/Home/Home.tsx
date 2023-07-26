@@ -24,6 +24,7 @@ const Home = () => {
   const [src, setSrc] = useState('TON');
   const [authFinished, setAuthFinished] = useState(false);
   const [dst, setDst] = useState('jUSDT');
+  const [value, setValue] = useState(0);
 
   const [userId, setUserId] = useState('');
 
@@ -63,6 +64,28 @@ const Home = () => {
     } else return '';
   }
 
+  function handleOptimize(): void {
+    if (!userId) {
+      console.warn("User not authorized yet")
+      return;
+    }
+    fetch(API_URL + '/dexopt/api/v1/optimize', {
+      method: 'POST', headers: {
+        "Content-Type": "application/json",
+      }, body: JSON.stringify({
+        'value': value,
+        'src': src,
+        'dst': dst,
+        'userId': userId
+      })
+    }).then(async (value) => {
+      const response = await value.json();
+      console.log(response);
+      localStorage.setItem('dex_optimiser_optimization', JSON.stringify(response));
+      navigate(RoutesName.OPTIMIZE)
+    });
+  }
+
   return (
     <div className="px-4 py-4 flex flex-col gap-2">
       <div className="flex justify-between items-center">
@@ -100,7 +123,9 @@ const Home = () => {
       <div className="flex items-end gap-2">
         <div className="basis-2/3 flex flex-col gap-1">
           <label className="text-sm">Amount</label>
-          <Input className="w-full text-lg h-12 font-semibold" />
+          <input className="w-full text-lg h-12 font-semibold" type='number' placeholder='Quantity' onChange={(e) => {
+            setValue(parseInt(e.target.value));
+          }} />
         </div>
         <div className="basis-1/3">
           <Select defaultValue="ton">
@@ -132,14 +157,16 @@ const Home = () => {
       </div>
 
       <div className="overflow-hidden rounded-xl">
-        <Graph pool={getPool()} />
+        {(import.meta.env.VITE_HIDE_GRAPH ?? 'false') === 'true' ?
+          null : <Graph pool={getPool()} />
+        }
       </div>
 
       <div>
         {!authFinished ? null : (
           <button
             className="rounded-2xl bg-sky-500 py-2.5 px-4 font-medium transition duration-75 hover:bg-sky-400 focus:outline-none text-white"
-            onClick={() => navigate(RoutesName.OPTIMIZE)}
+            onClick={handleOptimize}
           >
             Optimize it for me
           </button>

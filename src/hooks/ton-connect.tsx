@@ -90,6 +90,8 @@ function Dropdown({ address, tonConnectUI, fullWidth }: DropdownProps) {
   const disconnect = () => {
     tonConnectUI.disconnect();
     localStorage.removeItem('ton-proof');
+    localStorage.removeItem('dex_optimiser_user_key')
+    // TODO - reload app
   };
 
   return (
