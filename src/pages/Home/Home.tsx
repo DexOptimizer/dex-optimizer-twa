@@ -18,18 +18,19 @@ import {
 } from '../../components/new-ui/select';
 import { Input } from '../../components/new-ui/input';
 import { cn } from '../../utils';
+import { KEY_USER_KEY } from '../../store/StorageKeys';
 
 const Home = () => {
   const navigate = useNavigate();
   const { connected } = useTonConnect();
   const [src, setSrc] = useState('TON');
-  const [authFinished, setAuthFinished] = useState(false);
+  const [authFinished, setAuthFinished] =
+    useState(localStorage.getItem("KEY_AUTH_FINISHED") !== null && localStorage.getItem("KEY_AUTH_FINISHED") === localStorage.getItem(KEY_USER_KEY));
+  const [loading, setLoading] = useState(false);
   const [dst, setDst] = useState('jUSDT');
   const [value, setValue] = useState(0);
 
   const [userId, setUserId] = useState('');
-
-  const KEY_USER_KEY = 'dex_optimiser_user_key';
 
   useEffect(() => {
     const userKey = localStorage.getItem(KEY_USER_KEY);
@@ -40,7 +41,7 @@ const Home = () => {
       fetch(API_URL + '/dexopt/api/v1/auth/payload', { method: 'POST' }).then(
         async (value) => {
           const response = await value.json();
-          console.log(response);
+          console.log("UserId generated", response);
           localStorage.setItem(KEY_USER_KEY, response['userId']);
           setUserId(response['userId']);
         }
@@ -70,6 +71,7 @@ const Home = () => {
       console.warn('User not authorized yet');
       return;
     }
+    setLoading(true);
     fetch(API_URL + '/dexopt/api/v1/optimize', {
       method: 'POST',
       headers: {
@@ -82,6 +84,7 @@ const Home = () => {
         userId: userId,
       }),
     }).then(async (value) => {
+      setLoading(false);
       const response = await value.json();
       console.log(response);
       localStorage.setItem(
@@ -89,39 +92,43 @@ const Home = () => {
         JSON.stringify(response)
       );
       navigate(RoutesName.OPTIMIZE);
-    });
+    }).catch(() => { setLoading(false) });
   }
 
   return (
     <div className="px-4 py-4 flex flex-col gap-2">
       <div className="flex justify-between items-center">
         <img src={logo} className="w-10 h-10" alt="re:doubt logo" />
-        <TonConnectButtonV2
-          payload={userId}
-          finishAuth={(proof: string, address: string) => {
-            if (authFinished) {
-              return;
-            }
-            console.log('Finish auth');
-            fetch(API_URL + '/dexopt/api/v1/auth/finish', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                proof: proof,
-                address: address,
-                user_id: 'TBD',
-              }),
-            }).then(async (value) => {
-              const response = await value.json();
-              console.log(response);
-              if (response['auth'] === 'OK') {
-                setAuthFinished(true);
+        {userId ? (
+          <TonConnectButtonV2
+            payload={userId}
+            finishAuth={(proof: string, address: string) => {
+              console.log('Finish auth', authFinished);
+              if (authFinished) {
+                return;
               }
-            });
-          }}
-        />
+              fetch(API_URL + '/dexopt/api/v1/auth/finish', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  proof: proof,
+                  address: address,
+                  user_id: 'TBD',
+                }),
+              }).then(async (value) => {
+                const response = await value.json();
+                console.log(response);
+                if (response['auth'] === 'OK') {
+                  setAuthFinished(true);
+                  localStorage.setItem("KEY_AUTH_FINISHED", userId)
+                }
+              });
+            }}
+          />
+        ) : null}
+
       </div>
 
       <div className="flex flex-col gap-4">
@@ -186,9 +193,9 @@ const Home = () => {
             <button
               className={cn(
                 'rounded-2xl bg-sky-500 py-2.5 w-full font-medium transition duration-75 hover:bg-sky-400 focus:outline-none',
-                (!authFinished || value <= 0) ? 'cursor-not-allowed opacity-50' : ''
+                (loading || !authFinished || value <= 0) ? 'cursor-not-allowed opacity-50' : ''
               )}
-              disabled={!authFinished || value <= 0}
+              disabled={loading || !authFinished || value <= 0}
               onClick={handleOptimize}
             >
               Optimize it for me

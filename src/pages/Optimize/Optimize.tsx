@@ -4,6 +4,20 @@ import { Button, Balance, Input, DropDown } from "../../components/UI/index";
 import { useNavigate } from "react-router-dom";
 import { RoutesName } from "../../routes/constants";
 
+function formatValue(v: number) {
+  if (!v) {
+    return '0';
+  }
+  return v.toLocaleString('en-US', {
+    // minimumIntegerDigits: 3,
+    // minimumFractionDigits: 2,
+    // maximumSignificantDigits: 2,
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+    useGrouping: false
+  })
+}
+
 const Optimize = () => {
 
   const optimization_raw = localStorage.getItem('dex_optimiser_optimization');
@@ -26,7 +40,7 @@ const Optimize = () => {
       <div className='main'>
         <span style={{ fontSize: '20px' }}>Best output:</span>
         <div className='main_output'>
-          <span>{optimization['best_output']}</span> {optimization['dst_token']}
+          <span>{formatValue(optimization['best_output'])}</span> {optimization['dst_token']}
         </div>
 
         <div className='main_routes'>
@@ -42,9 +56,9 @@ const Optimize = () => {
 
         <div className='swaps'>
           <h1 className='swaps_text'>The best single swap route:</h1>
-          <span className='swaps_num'>-{optimization['best_single_swap_delta']}$</span>
+          <span className='swaps_num'>-{formatValue(optimization['best_single_swap_delta'])}$</span>
           <h1 className='swaps_text'>The worst single swap route:</h1>
-          <span className='swaps_num'>-{optimization['worst_single_swap_delta']}$</span>
+          <span className='swaps_num'>-{formatValue(optimization['worst_single_swap_delta'])}$</span>
         </div>
 
         <Button className={'button'} onClick={() => navigate(-1)}>Back</Button>

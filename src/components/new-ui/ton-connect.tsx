@@ -7,6 +7,7 @@ import {
 } from '@tonconnect/ui-react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { ChevronDown, Loader2 } from 'lucide-react';
+import { KEY_AUTH_FINISHED, KEY_USER_KEY } from '../../store/StorageKeys';
 
 type TonConnectButtonProps = {
   payload: string;
@@ -88,10 +89,12 @@ function Dropdown({ address, tonConnectUI, fullWidth }: DropdownProps) {
   }, [address]);
 
   const disconnect = () => {
+    console.log("Remove saved session")
     tonConnectUI.disconnect();
     localStorage.removeItem('ton-proof');
-    localStorage.removeItem('dex_optimiser_user_key')
-    // TODO - reload app
+    localStorage.removeItem(KEY_AUTH_FINISHED);
+    localStorage.removeItem(KEY_USER_KEY);
+    location.reload()
   };
 
   return (
