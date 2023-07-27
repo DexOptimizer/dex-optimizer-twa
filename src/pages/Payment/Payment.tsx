@@ -10,12 +10,13 @@ const Payment = () => {
   return (
     <>
       <div className='header_payment'>
-        <Balance/>
+        <Balance />
       </div>
       <div className='main'>
-        <span>Send 1 TON to</span>
-        <span style={{fontSize: '12px', margin: '10px 0 10px 0'}}>EQBe5lyDWdaZXHhVnZQGQlsZYaVjymAq9XMtpbwKPhqIdat</span>
-        <img src={qr} style={{width: '250px'}} alt=''/>
+        <span>Send TONs to</span>
+        <span style={{ fontSize: '14px', color: 'lightblue', margin: '10px 0 10px 0' }}>
+          <a href="ton://transfer/EQCvD46AlxdLvai4N3Pg7r6WtAOcTd9TZ-Qx0EBlK-C6oy9l">EQCvD46AlxdLvai4N3Pg7r6WtAOcTd9TZ-Qx0EBlK-C6oy9l</a></span>
+        <img src={qr} style={{ width: '250px' }} alt='' />
         <Button className={'button'} onClick={() => navigate(-1)}>Back</Button>
       </div>
     </>

@@ -1,5 +1,6 @@
 import './Optimize.scss'
 import { toncoin } from '../../images/index'
+import { redoubt } from '../../images/index'
 import { Button, Balance, Input, DropDown } from "../../components/UI/index";
 import { useNavigate } from "react-router-dom";
 import { RoutesName } from "../../routes/constants";
@@ -26,15 +27,6 @@ const Optimize = () => {
 
   const userId = localStorage.getItem(KEY_USER_KEY);
 
-  useEffect(() => {
-    fetch(API_URL + '/dexopt/api/v1/balance/' + userId).then(
-      async (value) => {
-        const response = await value.json();
-        setBalance(response['balance']);
-      }
-    );
-  }, [balance]);
-
   const optimization_raw = localStorage.getItem('dex_optimiser_optimization');
   if (!optimization_raw) {
     return (<Button className={'button'} onClick={() => navigate(-1)}>Back</Button>)
@@ -43,10 +35,7 @@ const Optimize = () => {
   console.log(optimization);
 
   const navigate = useNavigate()
-  if (!balance) {
-    // spinner ?
-    return null
-  }
+
 
   function handleViewRoutes(): void {
     () => navigate(RoutesName.DEXSWAP)
@@ -56,7 +45,7 @@ const Optimize = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        report_id: optimization['report_id'],
+        reportId: optimization['response_id'],
         userId: userId,
       }),
     }).then(async (value) => {
@@ -72,10 +61,7 @@ const Optimize = () => {
         <div className='left'>
           <input type='number' disabled={true} value={optimization['start_value']} /> {optimization['src_token']}
         </div>
-        <div className="balance">
-          <span id="service_fee">{balance}</span>
-          <img src={toncoin} style={{ width: '3rem' }} alt='' />
-        </div>
+        <Balance />
       </div>
       <div className='main'>
         <span style={{ fontSize: '20px' }}>Best output:</span>
@@ -87,7 +73,7 @@ const Optimize = () => {
           <Button className={'button'} onClick={handleViewRoutes} ><p style={{ color: '#fff' }}>View routes</p></Button>
           <span>for</span>
           <span>{optimization['price_tokens']}</span>
-          <img src={toncoin} style={{ width: '3rem' }} alt='' />
+          <img src={redoubt} style={{ width: '3rem' }} alt='' />
         </div>
 
         <div className='wrapper'>
