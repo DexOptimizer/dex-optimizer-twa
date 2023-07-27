@@ -85,13 +85,20 @@ const Home = () => {
       }),
     }).then(async (value) => {
       setLoading(false);
-      const response = await value.json();
-      console.log(response);
-      localStorage.setItem(
-        'dex_optimiser_optimization',
-        JSON.stringify(response)
-      );
-      navigate(RoutesName.OPTIMIZE);
+      if (value.status != 200) {
+        console.warn("Wrong status: ",);
+        if ((await value.json())['detail'] == 'Balance is empty') {
+          navigate(RoutesName.PAYFORTOKENS);
+        }
+      } else {
+        const response = await value.json();
+        console.log(response);
+        localStorage.setItem(
+          'dex_optimiser_optimization',
+          JSON.stringify(response)
+        );
+        navigate(RoutesName.OPTIMIZE);
+      }
     }).catch(() => { setLoading(false) });
   }
 

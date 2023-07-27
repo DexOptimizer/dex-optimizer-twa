@@ -39,7 +39,7 @@ const PayForTokens = () => {
         </div>
         <span>=</span>
         <div className='Wrapper_position'>
-          <Input value={value / 10} /><img src={toncoin} style={{ width: '3rem', marginLeft: '10px' }} alt='' />
+          <Input value={value / 10} disabled={true} /><img src={toncoin} style={{ width: '3rem', marginLeft: '10px' }} alt='' />
           {/* <DropDown/> */}
         </div>
         <div className='wrapper_buttons'>
