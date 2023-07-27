@@ -35,30 +35,14 @@ The route optimization algorithm considers various factors, including liquidity,
 # TWA Local Development 
 
 ## Prerequesities
-* Node.js v16 (other versions may work, needs more testing)* A TON Connect 2 compatible wallet
+* Node.js v16 (other versions may work, needs more testing)
+* A TON Connect 2 compatible wallet
 
 
 ### What does this repo contain?
 * A react-based TWA-ready app, interacting with TON and ChartingView 
 * Github actions set to deploy app to github pages
 * A script to connect a telegram bot to the deployed app
-
-#### How to use
-1. Create a template from this repo with the "Use this template" button
-2. Clone this repo and run `yarn`
-
-3. Create a new bot with [botfather](https://t.me/botfather)
-   1. Type `/newbot`
-   2. Choose a name for your bot, e.g. `My Ton TWA`
-   3. Choose a username for your bot, e.g. `my_ton_twa_482765_bot`
-   4. Take note of the access token, e.g. `5712441624:AAHmiHvwrrju1F3h29rlVOZLRLnv-B8ZZZ`
-   5. Run `yarn configbot` to link your bot to the webapp
-
-### Development
-1. Run `npm run dev` and edit the code as needed
-2. On push to the `main` branch, the app will be automatically deployed via github actions.
-
-#
 
 
 
