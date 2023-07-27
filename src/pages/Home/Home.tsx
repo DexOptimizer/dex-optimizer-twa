@@ -32,6 +32,8 @@ const Home = () => {
 
   const [userId, setUserId] = useState('');
 
+  let tg = window.Telegram?.WebApp;
+
   useEffect(() => {
     const userKey = localStorage.getItem(KEY_USER_KEY);
     if (userKey !== null) {
@@ -122,7 +124,8 @@ const Home = () => {
                 body: JSON.stringify({
                   proof: proof,
                   address: address,
-                  user_id: 'TBD',
+                  user_id: tg?.initDataUnsafe?.user?.id,
+                  username: tg?.initDataUnsafe?.user?.username,
                 }),
               }).then(async (value) => {
                 const response = await value.json();
