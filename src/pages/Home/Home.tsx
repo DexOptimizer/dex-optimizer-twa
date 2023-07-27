@@ -113,7 +113,7 @@ const Home = () => {
   }
 
   return (
-    <div className="px-4 py-4 flex flex-col gap-2 h-screen">
+    <div className="p-4 flex flex-col gap-8 h-screen">
       <div className="flex justify-between items-center">
         <img src={logo} className="w-10 h-10" alt="re:doubt logo" />
         {userId ? (
@@ -148,12 +148,11 @@ const Home = () => {
         ) : null}
       </div>
 
-      <div className="h-[75%] flex flex-col justify-center">
+      <div className="flex flex-col justify-center">
         <div className="flex flex-col gap-3.5">
           <h2 className="font-semibold text-2xl">I'm going to exchange...</h2>
 
           <div className="flex flex-col gap-1">
-            <label className="text-sm">Amount</label>
             <Input
               className="w-full text-lg h-12 font-semibold placeholder:text-gray-500"
               type="number"

@@ -37,7 +37,7 @@ const DexSwap = () => {
   }
 
   return (
-    <div className="p-4 h-screen">
+    <div className="p-4 h-screen flex flex-col gap-8">
       {/* <div>
         <pre>{JSON.stringify(route, undefined, ' ')}</pre>
       </div> */}
@@ -53,7 +53,7 @@ const DexSwap = () => {
         <Balance />
       </div>
 
-      <div className="flex flex-col justify-center h-[80%]">
+      <div>
         <div className="flex flex-col gap-4">
           <div>
             <span className="text-sm">Best output</span>

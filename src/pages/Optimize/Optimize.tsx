@@ -60,7 +60,7 @@ const Optimize = () => {
   }
 
   return (
-    <div className="p-4 h-screen max-h-screen">
+    <div className="p-4 flex flex-col gap-8">
       <div className="flex h-10 items-center justify-between">
         <Button
           onClick={() => navigate(-1)}
@@ -82,7 +82,7 @@ const Optimize = () => {
         </div>
       </div>
 
-      <div className="flex h-[80%] flex-col justify-center">
+      <div>
         <div className="flex flex-col gap-4">
           <div>
             <span className="text-xl font-semibold">
@@ -101,7 +101,7 @@ const Optimize = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2">
+          <div className="flex justify-between gap-2">
             <div className="flex gap-1 flex-col">
               <h2 className="text-sm">The best single swap route</h2>
               <span className="bg-red-500 max-w-fit px-3 rounded-xl py-1.5">
@@ -127,7 +127,11 @@ const Optimize = () => {
               <span>for </span>
               <div className="flex items-center gap-0.5">
                 <span>{optimization['price_tokens']}</span>
-                <img src={redoubt} className="h-8" alt="re:doubt logo" />
+                <img
+                  src={redoubt}
+                  className="h-8 aspect-square object-cover"
+                  alt="re:doubt logo"
+                />
               </div>
             </div>
           </div>
