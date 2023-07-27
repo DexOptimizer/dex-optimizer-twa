@@ -79,7 +79,7 @@ const DexSwap = () => {
             </div>
           </div>
 
-          <div>
+          <div className="flex flex-col gap-4">
             {(route['steps'] as []).map((step, index) => (
               <div key={index} className="flex flex-col gap-1">
                 <span className="text-sm">Step {index + 1}</span>
