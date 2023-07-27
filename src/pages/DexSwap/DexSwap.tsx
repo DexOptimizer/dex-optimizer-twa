@@ -77,7 +77,9 @@ const DexSwap = () => {
                                         'flex h-10 w-full rounded-xl border border-gray-800 bg-gray-900 px-2.5 py-2 text-sm outline-none focus:ring-1 focus:ring-sky-500 disabled:cursor-not-allowed disabled:opacity-50')}
                                 >{formatValue(step['dst_amount'])}&nbsp;{step['dst']}</span>
                                 <a
-                                    href={route['swap_url']}
+                                    onClick={() => {
+                                        window.Telegram?.WebApp?.openLink(step['swap_url'], { try_instant_view: true });
+                                    }}
                                     target="_blank"
                                     className="float-right rounded-xl bg-sky-500 px-3.5 py-2 font-medium"
                                 >

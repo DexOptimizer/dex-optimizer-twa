@@ -7,6 +7,7 @@ const Payment = () => {
 
   const navigate = useNavigate()
 
+
   return (
     <>
       <div className='header_payment'>
@@ -15,7 +16,13 @@ const Payment = () => {
       <div className='main'>
         <span>Send TONs to</span>
         <span style={{ fontSize: '14px', color: 'lightblue', margin: '10px 0 10px 0' }}>
-          <a href="ton://transfer/EQCvD46AlxdLvai4N3Pg7r6WtAOcTd9TZ-Qx0EBlK-C6oy9l">EQCvD46AlxdLvai4N3Pg7r6WtAOcTd9TZ-Qx0EBlK-C6oy9l</a></span>
+          <a
+            onClick={() => {
+              window.Telegram?.WebApp?.openLink
+                ("ton://transfer/EQCvD46AlxdLvai4N3Pg7r6WtAOcTd9TZ-Qx0EBlK-C6oy9l",
+                  { try_instant_view: true });
+            }}
+          >EQCvD46AlxdLvai4N3Pg7r6WtAOcTd9TZ-Qx0EBlK-C6oy9l</a></span>
         <img src={qr} style={{ width: '250px' }} alt='' />
         <Button className={'button'} onClick={() => navigate(-1)}>Back</Button>
       </div>
