@@ -31,7 +31,7 @@ const Balance = () => {
 
   return (
     <div
-      className="flex gap-0.5 items-center bg-gray-800/70 rounded-2xl h-10 pl-2 pr-1.5"
+      className="flex gap-0.5 items-center bg-gray-800/70 rounded-2xl h-10 pl-3 pr-1.5"
       onClick={() => navigate(RoutesName.PAYFORTOKENS)}
     >
       <span id="service_fee" className="text-xl font-semibold">
