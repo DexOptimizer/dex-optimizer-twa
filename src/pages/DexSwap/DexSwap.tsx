@@ -4,13 +4,26 @@ import arrowReverse from '../../images/arrow-revers.png'
 import box from '../../images/box.png'
 import { toncoin } from '../../images'
 import { useNavigate } from 'react-router-dom'
+import { KEY_ROUTE_KEY } from '../../store/StorageKeys'
 
 const DexSwap = () => {
 
     const navigate = useNavigate()
 
+    const route_raw = localStorage.getItem(KEY_ROUTE_KEY);
+    if (!route_raw) {
+        return (<Button className={'button'} onClick={() => navigate(-1)}>Back</Button>)
+    }
+    const route = JSON.parse(route_raw)
+    console.log(route);
+
     return (
         <>
+            <div>
+                <pre>
+                    {JSON.stringify(route, undefined, " ")}
+                </pre>
+            </div>
             <div className="header_optimize">
                 <div className='left'>
                     <Input />

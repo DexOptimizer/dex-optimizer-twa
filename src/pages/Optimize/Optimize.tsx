@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { RoutesName } from "../../routes/constants";
 import { useEffect, useState } from 'react';
 import { API_URL } from '../../api/api';
-import { KEY_USER_KEY } from '../../store/StorageKeys';
+import { KEY_ROUTE_KEY, KEY_USER_KEY } from '../../store/StorageKeys';
 
 function formatValue(v: number) {
   if (!v) {
@@ -51,6 +51,7 @@ const Optimize = () => {
     }).then(async (value) => {
       const response = await value.json();
       console.log(response);
+      localStorage.setItem(KEY_ROUTE_KEY, JSON.stringify(response))
       navigate(RoutesName.DEXSWAP);
     }).catch((e) => { console.error(e) });
   }

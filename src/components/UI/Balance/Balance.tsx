@@ -8,7 +8,7 @@ import { KEY_USER_KEY } from '../../../store/StorageKeys';
 const Balance = () => {
     const userId = localStorage.getItem(KEY_USER_KEY);
 
-    const [balance, setBalance] = useState(0);
+    const [balance, setBalance] = useState(-1);
     useEffect(() => {
         fetch(API_URL + '/dexopt/api/v1/balance/' + userId).then(
             async (value) => {
@@ -18,7 +18,7 @@ const Balance = () => {
         );
     }, [balance]);
 
-    if (!balance) {
+    if (balance == -1) {
         // spinner ?
         return null
     }
