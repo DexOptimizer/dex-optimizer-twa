@@ -3,6 +3,9 @@ import { toncoin } from '../../images/index'
 import { Button, Balance, Input, DropDown } from "../../components/UI/index";
 import { useNavigate } from "react-router-dom";
 import { RoutesName } from "../../routes/constants";
+import { useEffect, useState } from 'react';
+import { API_URL } from '../../api/api';
+import { KEY_USER_KEY } from '../../store/StorageKeys';
 
 function formatValue(v: number) {
   if (!v) {
@@ -19,6 +22,18 @@ function formatValue(v: number) {
 }
 
 const Optimize = () => {
+  const [balance, setBalance] = useState(0);
+
+  const userId = localStorage.getItem(KEY_USER_KEY);
+
+  useEffect(() => {
+    fetch(API_URL + '/dexopt/api/v1/balance/' + userId).then(
+      async (value) => {
+        const response = await value.json();
+        setBalance(response['balance']);
+      }
+    );
+  }, [balance]);
 
   const optimization_raw = localStorage.getItem('dex_optimiser_optimization');
   if (!optimization_raw) {
@@ -28,6 +43,28 @@ const Optimize = () => {
   console.log(optimization);
 
   const navigate = useNavigate()
+  if (!balance) {
+    // spinner ?
+    return null
+  }
+
+  function handleViewRoutes(): void {
+    () => navigate(RoutesName.DEXSWAP)
+    fetch(API_URL + '/dexopt/api/v1/view', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        report_id: optimization['report_id'],
+        userId: userId,
+      }),
+    }).then(async (value) => {
+      const response = await value.json();
+      console.log(response);
+      navigate(RoutesName.DEXSWAP);
+    }).catch((e) => { console.error(e) });
+  }
 
   return (
     <>
@@ -35,7 +72,10 @@ const Optimize = () => {
         <div className='left'>
           <input type='number' disabled={true} value={optimization['start_value']} /> {optimization['src_token']}
         </div>
-        <Balance />
+        <div className="balance">
+          <span id="service_fee">{balance}</span>
+          <img src={toncoin} style={{ width: '3rem' }} alt='' />
+        </div>
       </div>
       <div className='main'>
         <span style={{ fontSize: '20px' }}>Best output:</span>
@@ -44,14 +84,14 @@ const Optimize = () => {
         </div>
 
         <div className='main_routes'>
-          <Button className={'button'} onClick={() => navigate(RoutesName.DEXSWAP)} ><p style={{ color: '#fff' }}>View routes</p></Button>
+          <Button className={'button'} onClick={handleViewRoutes} ><p style={{ color: '#fff' }}>View routes</p></Button>
           <span>for</span>
           <span>{optimization['price_tokens']}</span>
           <img src={toncoin} style={{ width: '3rem' }} alt='' />
         </div>
 
         <div className='wrapper'>
-          <Button className={'button'} onClick={() => navigate(RoutesName.PAYFORTOKENS)}><span style={{ color: '#fff' }}>Buy more ST</span></Button>
+          <Button className={'button'} onClick={() => navigate(RoutesName.PAYFORTOKENS)}><span style={{ color: '#fff' }}>Buy more Credits</span></Button>
         </div>
 
         <div className='swaps'>
