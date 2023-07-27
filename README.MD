@@ -3,7 +3,9 @@
 > **Summary:** TWA interacting with the TON blockchain includes [ChartingView](https://chartingview.co/) integration and allows users swap Jettons 
 > in optimized way across DeDust, Ston.fi and Megaton. The main users utility are “special solvers" compete to find the best liquidity source (optimal route) for your trade across mentioned decentralized exchanges. **So the worst price you'll get with us is the best price available elsewhere.**
 
-## [Go to DEX Optimizer TWA](https://t.me/TonDexOptimizerBot)
+# Demo
+![image](./docs/demo.png)
+## [Go to DEX Optimizer TWA](https://t.me/TonDexOptimizerBot/start)
 
 # Overview
 
