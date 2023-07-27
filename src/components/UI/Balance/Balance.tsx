@@ -4,6 +4,7 @@ import { API_URL } from '../../../api/api';
 import { KEY_USER_KEY } from '../../../store/StorageKeys';
 import { useNavigate } from 'react-router-dom';
 import { RoutesName } from '../../../routes/constants';
+import { Loader2 } from 'lucide-react';
 
 const Balance = () => {
   const userId = localStorage.getItem(KEY_USER_KEY);
@@ -21,7 +22,11 @@ const Balance = () => {
 
   if (balance == -1) {
     // spinner ?
-    return null;
+    return (
+      <div className="h-10 bg-gray-800/70 rounded-2xl w-10 grid place-content-center">
+        <Loader2 className="animate-spin" />
+      </div>
+    );
   }
 
   return (
