@@ -113,7 +113,7 @@ const Home = () => {
   }
 
   return (
-    <div className="px-4 py-4 flex flex-col gap-2">
+    <div className="px-4 py-4 flex flex-col gap-2 h-screen">
       <div className="flex justify-between items-center">
         <img src={logo} className="w-10 h-10" alt="re:doubt logo" />
         {userId ? (
@@ -148,77 +148,79 @@ const Home = () => {
         ) : null}
       </div>
 
-      <div className="flex flex-col gap-3.5">
-        <h2 className="font-semibold text-2xl">I'm going to exchange...</h2>
+      <div className="h-[75%] flex flex-col justify-center">
+        <div className="flex flex-col gap-3.5">
+          <h2 className="font-semibold text-2xl">I'm going to exchange...</h2>
 
-        <div className="flex flex-col gap-1">
-          <label className="text-sm">Amount</label>
-          <Input
-            className="w-full text-lg h-12 font-semibold placeholder:text-gray-500"
-            type="number"
-            pattern="\d*"
-            placeholder="Amount"
-            onChange={(e) => {
-              if (e.target.value === '') {
-                setValue(0);
-              } else {
-                setValue(parseInt(e.target.value));
-              }
-            }}
-          />
-        </div>
+          <div className="flex flex-col gap-1">
+            <label className="text-sm">Amount</label>
+            <Input
+              className="w-full text-lg h-12 font-semibold placeholder:text-gray-500"
+              type="number"
+              pattern="\d*"
+              placeholder="Amount"
+              onChange={(e) => {
+                if (e.target.value === '') {
+                  setValue(0);
+                } else {
+                  setValue(parseInt(e.target.value));
+                }
+              }}
+            />
+          </div>
 
-        <div className="flex items-end gap-3.5">
-          <Select defaultValue="ton">
-            <SelectTrigger className="h-12">
-              <SelectValue placeholder="TON" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="ton">TON</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="flex items-end gap-3.5">
+            <Select defaultValue="ton">
+              <SelectTrigger className="h-12">
+                <SelectValue placeholder="TON" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="ton">TON</SelectItem>
+              </SelectContent>
+            </Select>
 
-          <Select
-            value={dst}
-            onValueChange={(value) => {
-              console.log('onValueChange', value);
-              setDst(value);
-            }}
-          >
-            <SelectTrigger className="h-12">
-              <SelectValue placeholder="USDC" />
-            </SelectTrigger>
-            <SelectContent>
-              {currency.map((currency, index) => (
-                <SelectItem key={index} value={currency}>
-                  {currency}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="overflow-hidden rounded-xl">
-          {(import.meta.env.VITE_HIDE_GRAPH ?? 'false') === 'true' ? null : (
-            <Graph pool={getPool()} />
-          )}
-        </div>
-
-        <div>
-          {!connected ? null : (
-            <button
-              className={cn(
-                'rounded-2xl bg-sky-500 py-2.5 w-full font-medium transition duration-75 hover:bg-sky-400 focus:outline-none',
-                loading || !authFinished || value <= 0
-                  ? 'cursor-not-allowed opacity-50'
-                  : ''
-              )}
-              disabled={loading || !authFinished || value <= 0}
-              onClick={handleOptimize}
+            <Select
+              value={dst}
+              onValueChange={(value) => {
+                console.log('onValueChange', value);
+                setDst(value);
+              }}
             >
-              Optimize it for me
-            </button>
-          )}
+              <SelectTrigger className="h-12">
+                <SelectValue placeholder="USDC" />
+              </SelectTrigger>
+              <SelectContent>
+                {currency.map((currency, index) => (
+                  <SelectItem key={index} value={currency}>
+                    {currency}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="overflow-hidden rounded-xl bg-[rgb(19,23,34)]">
+            {(import.meta.env.VITE_HIDE_GRAPH ?? 'false') === 'true' ? null : (
+              <Graph pool={getPool()} />
+            )}
+          </div>
+
+          <div>
+            {!connected ? null : (
+              <button
+                className={cn(
+                  'rounded-2xl bg-sky-500 py-2.5 w-full font-medium transition duration-75 hover:bg-sky-400 focus:outline-none',
+                  loading || !authFinished || value <= 0
+                    ? 'cursor-not-allowed opacity-50'
+                    : ''
+                )}
+                disabled={loading || !authFinished || value <= 0}
+                onClick={handleOptimize}
+              >
+                Optimize it for me
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-import './Balance.scss';
 import { redoubt, toncoin } from '../../../images/index';
 import { useEffect, useState } from 'react';
 import { API_URL } from '../../../api/api';
@@ -26,9 +25,14 @@ const Balance = () => {
   }
 
   return (
-    <div className="balance" onClick={() => navigate(RoutesName.PAYFORTOKENS)}>
-      <span id="service_fee">{balance}</span>
-      <img src={redoubt} style={{ width: '3rem' }} alt="" />
+    <div
+      className="flex gap-0.5 items-center bg-gray-800/70 rounded-2xl h-10 pl-2 pr-1.5"
+      onClick={() => navigate(RoutesName.PAYFORTOKENS)}
+    >
+      <span id="service_fee" className="text-xl font-semibold">
+        {balance}
+      </span>
+      <img src={redoubt} className="h-8" alt="re:doubt logo" />
     </div>
   );
 };
