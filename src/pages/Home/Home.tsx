@@ -24,8 +24,12 @@ const Home = () => {
   const navigate = useNavigate();
   const { connected } = useTonConnect();
   const [src, setSrc] = useState('TON');
-  const [authFinished, setAuthFinished] =
-    useState(localStorage.getItem("KEY_AUTH_FINISHED") !== null && localStorage.getItem("KEY_AUTH_FINISHED") === localStorage.getItem(KEY_USER_KEY));
+
+  const [authFinished, setAuthFinished] = useState(
+    localStorage.getItem('KEY_AUTH_FINISHED') !== null &&
+      localStorage.getItem('KEY_AUTH_FINISHED') ===
+        localStorage.getItem(KEY_USER_KEY)
+  );
   const [loading, setLoading] = useState(false);
   const [dst, setDst] = useState('jUSDT');
   const [value, setValue] = useState(0);
@@ -43,7 +47,7 @@ const Home = () => {
       fetch(API_URL + '/dexopt/api/v1/auth/payload', { method: 'POST' }).then(
         async (value) => {
           const response = await value.json();
-          console.log("UserId generated", response);
+          console.log('UserId generated', response);
           localStorage.setItem(KEY_USER_KEY, response['userId']);
           setUserId(response['userId']);
         }
@@ -85,23 +89,27 @@ const Home = () => {
         dst: dst,
         userId: userId,
       }),
-    }).then(async (value) => {
-      setLoading(false);
-      if (value.status != 200) {
-        console.warn("Wrong status: ",);
-        if ((await value.json())['detail'] == 'Balance is empty') {
-          navigate(RoutesName.PAYFORTOKENS);
+    })
+      .then(async (value) => {
+        setLoading(false);
+        if (value.status != 200) {
+          console.warn('Wrong status: ');
+          if ((await value.json())['detail'] == 'Balance is empty') {
+            navigate(RoutesName.PAYFORTOKENS);
+          }
+        } else {
+          const response = await value.json();
+          console.log(response);
+          localStorage.setItem(
+            'dex_optimiser_optimization',
+            JSON.stringify(response)
+          );
+          navigate(RoutesName.OPTIMIZE);
         }
-      } else {
-        const response = await value.json();
-        console.log(response);
-        localStorage.setItem(
-          'dex_optimiser_optimization',
-          JSON.stringify(response)
-        );
-        navigate(RoutesName.OPTIMIZE);
-      }
-    }).catch(() => { setLoading(false) });
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   }
 
   return (
@@ -132,64 +140,62 @@ const Home = () => {
                 console.log(response);
                 if (response['auth'] === 'OK') {
                   setAuthFinished(true);
-                  localStorage.setItem("KEY_AUTH_FINISHED", userId)
+                  localStorage.setItem('KEY_AUTH_FINISHED', userId);
                 }
               });
             }}
           />
         ) : null}
-
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3.5">
         <h2 className="font-semibold text-2xl">I'm going to exchange...</h2>
-        <div className="flex items-end gap-2">
-          <div className="basis-2/3 flex flex-col gap-1">
-            <label className="text-sm">Amount</label>
-            <Input
-              className="w-full text-lg h-12 font-semibold placeholder:text-gray-500"
-              type="number"
-              pattern="\d*"
-              placeholder="Amount"
-              onChange={(e) => {
-                if (e.target.value === '') {
-                  setValue(0);
-                } else {
-                  setValue(parseInt(e.target.value));
-                }
-              }}
-            />
-          </div>
-          <div className="basis-1/3">
-            <Select defaultValue="ton">
-              <SelectTrigger className="h-12">
-                <SelectValue placeholder="TON" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="ton">TON</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+
+        <div className="flex flex-col gap-1">
+          <label className="text-sm">Amount</label>
+          <Input
+            className="w-full text-lg h-12 font-semibold placeholder:text-gray-500"
+            type="number"
+            pattern="\d*"
+            placeholder="Amount"
+            onChange={(e) => {
+              if (e.target.value === '') {
+                setValue(0);
+              } else {
+                setValue(parseInt(e.target.value));
+              }
+            }}
+          />
         </div>
 
-        <div className="flex items-end gap-2">
-          <div className="basis-2/3 flex flex-col gap-1">
-            <label className="text-sm">To</label>
+        <div className="flex items-end gap-3.5">
+          <Select defaultValue="ton">
+            <SelectTrigger className="h-12">
+              <SelectValue placeholder="TON" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="ton">TON</SelectItem>
+            </SelectContent>
+          </Select>
 
-          </div>
-          <div className="basis-1/3">
-            <Select value={dst} onValueChange={(value) => { console.log("onValueChange", value); setDst(value); }}>
-              <SelectTrigger className="h-12">
-                <SelectValue placeholder="USDC" />
-              </SelectTrigger>
-              <SelectContent>
-                {currency
-                  .map((currency, index) => (<SelectItem key={index} value={currency}>{currency}</SelectItem>))
-                }
-
-              </SelectContent>
-            </Select>
-          </div>
+          <Select
+            value={dst}
+            onValueChange={(value) => {
+              console.log('onValueChange', value);
+              setDst(value);
+            }}
+          >
+            <SelectTrigger className="h-12">
+              <SelectValue placeholder="USDC" />
+            </SelectTrigger>
+            <SelectContent>
+              {currency.map((currency, index) => (
+                <SelectItem key={index} value={currency}>
+                  {currency}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="overflow-hidden rounded-xl">
@@ -203,7 +209,9 @@ const Home = () => {
             <button
               className={cn(
                 'rounded-2xl bg-sky-500 py-2.5 w-full font-medium transition duration-75 hover:bg-sky-400 focus:outline-none',
-                (loading || !authFinished || value <= 0) ? 'cursor-not-allowed opacity-50' : ''
+                loading || !authFinished || value <= 0
+                  ? 'cursor-not-allowed opacity-50'
+                  : ''
               )}
               disabled={loading || !authFinished || value <= 0}
               onClick={handleOptimize}
