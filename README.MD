@@ -1,6 +1,6 @@
-# DEX Optimizer TWA with ChartingView Integration
+# DEX Optimizer TWA with TradingView Integration
 
-> **Summary:** TWA interacting with the TON blockchain includes [ChartingView](https://chartingview.co/) integration and allows users swap Jettons 
+> **Summary:** TWA interacting with the TON blockchain includes TradingView's advanced charts integration and allows users swap Jettons 
 > in optimized way across DeDust, Ston.fi and Megaton. The main users utility are “special solvers" compete to find the best liquidity source (optimal route) for your trade across mentioned decentralized exchanges. **So the worst price you'll get with us is the best price available elsewhere.**
 
 # Demo
@@ -11,9 +11,9 @@
 
 DEX Optimizer is a web-based application that provides a user-friendly interface for interacting with the TON blockchain. TON stands for "Telegram Open Network," and it is a decentralized blockchain platform developed by Telegram, a popular messaging app. TON aims to offer fast and secure transactions, smart contracts, and various other features for its users.
 
-The TWA integrates [ChartingView](https://chartingview.co/), which is a popular charting and technical analysis tool in TON based on [TradingView](https://www.tradingview.com/). This integration allows users to access advanced charting capabilities and perform technical analysis on various assets and tokens available on the TON blockchain. With ChartingView, users can analyze historical price data, identify trends, and make informed decisions when trading or swapping tokens.
+The TWA integrates TradingView's advanced charts, which is a popular charting and technical analysis tool in TON based on [TradingView](https://www.tradingview.com/). This integration allows users to access advanced charting capabilities and perform technical analysis on various assets and tokens available on the TON blockchain. With TradingView, users can analyze historical price data, identify trends, and make informed decisions when trading or swapping tokens.
 
-One of the primary features of DEX Optimizer is the optimized token swapping functionality. Users can swap Jettons (tokens) across different decentralized finance (DeFi) protocols in a seamless, tailored and efficient manner. Specifically, DEX Optimizer enables users to perform token swaps across three DeFi platforms: DeDust, Ston.fi, and Megaton.
+One of the primary features of DEX Optimizer is the optimized token-swapping functionality. Users can swap Jettons (tokens) across different decentralized finance (DeFi) protocols in a seamless, tailored and efficient manner. Specifically, DEX Optimizer enables users to perform token swaps across three DeFi platforms: DeDust, Ston.fi, and Megaton.
 
 # TWA Architecture
 
@@ -26,9 +26,9 @@ When a trader wants to perform a token swap between two tokens that are not dire
 
 The route optimization algorithm considers various factors, including liquidity, trading fees, and slippage, to determine the optimal sequence of trades across DEXes. By splitting the trade and selecting the most liquid and cost-efficient trading pairs at each step, traders can minimize price impact and obtain the best possible price for their token swap.
 
-## ChartingView Integration
+## TradingView Integration
 
-[ChartingView](https://chartingview.co/) allows you to search for a specific ticker (symbol) in the TON DeFi ecosystem, retrieves incl. OHLCV chart data and subscribe to updates.
+Tradingview's advanced charts allows you to search for a specific ticker (symbol) in the TON DeFi ecosystem, retrieves incl. OHLCV chart data and subscribe to updates.
 
 ![image](./docs/chartingview.jpeg)
 
@@ -40,7 +40,7 @@ The route optimization algorithm considers various factors, including liquidity,
 
 
 ### What does this repo contain?
-* A react-based TWA-ready app, interacting with TON and ChartingView 
+* A react-based TWA-ready app, interacting with TON and TradingView's advanced charts 
 * Github actions set to deploy app to github pages
 * A script to connect a telegram bot to the deployed app
 
